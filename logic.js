@@ -1,29 +1,42 @@
 //$(document).ready(function(){
 
 
-var laty = 0;
-var long = 0;
+var laty = 40.9097802;
+var long = -100.1617613;
+var zoom = 3;
 var map;
 var marker;
 var infowindow;
 var shelterLat;
 var shelterLong;
+var name = "dog"
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: laty, lng: long},
             scrollwheel: false,
-            zoom: 10
+            zoom: zoom
         });
 
     }
+
+    $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
+    ).done(function(breedData) { 
+
+        console.log('Breed Data retrieved!')
+        console.log(breedData);
+
+        for (i = 0; i < breedData.petfinder.breeds.breed.length; i++){
+            $("#autofill").append("<option value='" + breedData.petfinder.breeds.breed[i].$t + "'>");
+        }
+    });
 
 
 $("#submitName").on("click", function(){
 
     $(".animalInfo").empty();
 
-    var name = $("#animalName").val().trim();
+    //var name = $("#animalName").val().trim();
 
     var breedType = $("#breedName").val().trim();
 
@@ -37,6 +50,7 @@ $("#submitName").on("click", function(){
     }).done(function(mapData) {
         laty = mapData.results[0].geometry.location.lat;
         long = mapData.results[0].geometry.location.lng;
+        zoom = 10;
         var cityName = ("<div>" + "<b>Rescues Near: </b>" + mapData.results[0].formatted_address + "</div>");
         $(".mapTitle").html(cityName)
         console.log(mapData);
@@ -76,14 +90,6 @@ $("#submitName").on("click", function(){
 
     })
 
-    $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
-            ).done(function(breedData) { 
-
-            console.log('Breed Data retrieved!')
-            console.log(breedData);
-             
-            });
-
     $.getJSON('http://api.petfinder.com/shelter.find?format=json&key=542589b85677d309b9e508711958b27a&count=7&location=' + zip + '&callback=?'
             ).done(function(shelterData) { 
 
@@ -106,12 +112,23 @@ $("#submitName").on("click", function(){
 
                     var infowindow = new google.maps.InfoWindow();  
                     var content = shelterName;
-                    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                    google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){ 
                         return function() {
                             infowindow.setContent(content);
                             infowindow.open(map,marker);
                         };
                     })(marker,content,infowindow));
+                    //google.maps.event.addListener(marker,'mouseout', (function(marker,content,infowindow){ 
+                        //return function() {
+                            //infowindow.setContent(content);
+                            //infowindow.open(map,marker);
+                        //};
+                    //})(marker,content,infowindow));
+                    google.maps.event.addListener(marker, 'mouseout', (function(marker,content,infowindow){ 
+                        return function() {
+                            infowindow.close();
+                        };
+                    })(marker,content,infowindow)); 
                 }
 
             });
