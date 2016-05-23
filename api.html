@@ -18,8 +18,23 @@
         <div class="form-group">
           <center><label class="nameinputlabel" for="text">Zipcode:</label></center>
           <input type="text" class="form-control" id="zip">
-          <center><label class="nameinputlabel" for="text">Animal type:</label></center>
-          <input type="text" class="form-control" id="animalName">
+
+          <br>
+          <div class="dropdown animalName">
+
+            <button class="btn btn-secondary dropdown-toggle animalButton" data-toggle="dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <b>Animal Type</b>
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-right animalName" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item typeDog" type="button">Dog</button>
+              <button class="dropdown-item typeCat" type="button">Cat</button>
+              <button class="dropdown-item typeBird" type="button">Bird</button>
+            </div>
+
+          </div>
+        <br>
+
           <center><label class="nameinputlabel" for="text">Breed type:</label></center>
           <input type="text" class="form-control" list="autofill" id="breedName">
           <br>

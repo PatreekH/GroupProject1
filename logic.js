@@ -9,41 +9,80 @@ var marker;
 var infowindow;
 var shelterLat;
 var shelterLong;
+var name;
+
+$(".panel").hide();
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: laty, lng: long},
+        scrollwheel: false,
+        zoom: zoom
+    });
+}
+
+$(".typeDog").on("click", function(){
 var name = "dog"
+$("#autofill").empty()
+$.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
+    ).done(function(dogData) { 
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: laty, lng: long},
-            scrollwheel: false,
-            zoom: zoom
-        });
+        console.log('Dog Breed Data retrieved!')
+        console.log(dogData);
+        $(".animalButton").empty();
+        $(".animalButton").html("<b>Dog</b>");
 
-    }
-
-    $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
-    ).done(function(breedData) { 
-
-        console.log('Breed Data retrieved!')
-        console.log(breedData);
-
-        for (i = 0; i < breedData.petfinder.breeds.breed.length; i++){
-            $("#autofill").append("<option value='" + breedData.petfinder.breeds.breed[i].$t + "'>");
+        for (i = 0; i < dogData.petfinder.breeds.breed.length; i++){
+            $("#autofill").append("<option value='" + dogData.petfinder.breeds.breed[i].$t + "'>");
         }
     });
+})
+$(".typeCat").on("click", function(){
+var name = "cat"
+$("#autofill").empty()
+$.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
+    ).done(function(catData) { 
 
+        console.log('Cat Breed Data retrieved!')
+        console.log(catData);
+        $(".animalButton").empty();
+        $(".animalButton").html("<b>Cat</b>");
+
+        for (i = 0; i < catData.petfinder.breeds.breed.length; i++){
+            $("#autofill").append("<option value='" + catData.petfinder.breeds.breed[i].$t + "'>");
+        }
+    });
+})
+$(".typeBird").on("click", function(){
+var name = "bird"
+$("#autofill").empty()
+$.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
+    ).done(function(birdData) { 
+
+        console.log('Bird Breed Data retrieved!')
+        console.log(birdData);
+        $(".animalButton").empty();
+        $(".animalButton").html("<b>Bird</b>");
+
+        for (i = 0; i < birdData.petfinder.breeds.breed.length; i++){
+            $("#autofill").append("<option value='" + birdData.petfinder.breeds.breed[i].$t + "'>");
+        }
+    });
+})
+
+$(".animalButton").on("click", function(){
+    $(".dropdown").addClass("open");
+});
 
 $("#submitName").on("click", function(){
 
+    $(".panel").show();
     $(".animalInfo").empty();
-
     //var name = $("#animalName").val().trim();
-
     var breedType = $("#breedName").val().trim();
-
     var zip = $("#zip").val().trim();
 
     var apiMap = "https://maps.googleapis.com/maps/api/geocode/json?address=postal_code:" + zip + "&key=AIzaSyC1mvi9WJalAJi7wOxXsYjqtwbDU3h6C5s";
-
     $.ajax({
         url: apiMap,
         method: 'GET'
@@ -58,7 +97,6 @@ $("#submitName").on("click", function(){
         });
 
     var apiBreed = "http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + breedType + "&callback=?";
- 
     $.ajax({
         type: "GET",
         url: apiBreed,
@@ -66,44 +104,38 @@ $("#submitName").on("click", function(){
         async: false,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
-
             console.log('Wiki Data retrieved!')
             console.log(data);
- 
             var markup = data.parse.text["*"];
             var blurb = $('<div></div>').html(markup);
- 
             // remove links as they will not work
             blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
- 
             // remove any references
             blurb.find('sup').remove();
- 
             // remove cite error
             blurb.find('.mw-ext-cite-error').remove();
             $('.result').html($(blurb).find('p'));
- 
         },
 
         error: function (errorMessage) {
         }
-
     })
 
     $.getJSON('http://api.petfinder.com/shelter.find?format=json&key=542589b85677d309b9e508711958b27a&count=7&location=' + zip + '&callback=?'
             ).done(function(shelterData) { 
-
             console.log('Shelter Data retrieved!')
             console.log(shelterData);
-
                 for (var i = 0; i < shelterData.petfinder.shelters.shelter.length; i++){
+
                     var shelterLat = shelterData.petfinder.shelters.shelter[i].latitude.$t;
                     var shelterLong = shelterData.petfinder.shelters.shelter[i].longitude.$t;
                     var shelterName = shelterData.petfinder.shelters.shelter[i].name.$t;
-                    //newMarker();
-                //}
 
-                //function newMarker(){
+                    //var shelterAddy = shelterData.petfinder.shelters.shelter[i].address1.$t;
+                    var shelterCity = shelterData.petfinder.shelters.shelter[i].city.$t;
+                    var shelterPhone = shelterData.petfinder.shelters.shelter[i].phone.$t;
+                    var shelterZip = shelterData.petfinder.shelters.shelter[i].zip.$t;
+
                     marker = new google.maps.Marker({
                         position: {lat: parseFloat(shelterLat), lng: parseFloat(shelterLong)},
                         map: map,
@@ -112,23 +144,27 @@ $("#submitName").on("click", function(){
 
                     var infowindow = new google.maps.InfoWindow();  
                     var content = shelterName;
+                    var moreContent = "<b>" + shelterName + "</b><br><b>City: </b>" + shelterCity + "<br><b>Zipcode: </b>" + shelterZip + "<br><b>Phone #: </b>" + shelterPhone;
+
                     google.maps.event.addListener(marker,'mouseover', (function(marker,content,infowindow){ 
                         return function() {
                             infowindow.setContent(content);
                             infowindow.open(map,marker);
                         };
                     })(marker,content,infowindow));
+
                     //google.maps.event.addListener(marker,'mouseout', (function(marker,content,infowindow){ 
-                        //return function() {
-                            //infowindow.setContent(content);
-                            //infowindow.open(map,marker);
-                        //};
+                      //  return function() {
+                     //       infowindow.close()
+                    //    };
                     //})(marker,content,infowindow));
-                    google.maps.event.addListener(marker, 'mouseout', (function(marker,content,infowindow){ 
+
+                    google.maps.event.addListener(marker, 'click', (function(marker,moreContent,infowindow){ 
                         return function() {
-                            infowindow.close();
+                            infowindow.setContent(moreContent)
+                            infowindow.open(map,marker);
                         };
-                    })(marker,content,infowindow)); 
+                    })(marker,moreContent,infowindow)); 
                 }
 
             });
@@ -164,7 +200,6 @@ $("#submitName").on("click", function(){
 
                 animalDiv.append(animalImg);
                 animalDiv.append(animalInfo)
-
 
                 $(".animalInfo").append(animalDiv); 
             }

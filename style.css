@@ -2,14 +2,19 @@
 	overflow: auto;
 }
 
-#animalName{
+.animalName{
 	width: 15%;
 	margin-left: 42.5%;
+	text-align: center;
 }
 
 #breedName{
 	width: 15%;
 	margin-left: 42.5%;
+}
+
+.animalButton{
+	width: 100%;
 }
 
 #zip{
@@ -31,6 +36,10 @@
 
 .petPic{
 	float: left;
+}
+
+.dropdownpos{
+	margin: 1%;
 }
 
 .title{
