@@ -37,7 +37,7 @@ $("#submitName").on("click", function(){
     }).done(function(mapData) {
         laty = mapData.results[0].geometry.location.lat;
         long = mapData.results[0].geometry.location.lng;
-        var cityName = ("<div>" + mapData.results[0].formatted_address + "</div>");
+        var cityName = ("<div>" + "<b>Rescues Near: </b>" + mapData.results[0].formatted_address + "</div>");
         $(".mapTitle").html(cityName)
         console.log(mapData);
         initMap();
@@ -84,7 +84,7 @@ $("#submitName").on("click", function(){
              
             });
 
-    $.getJSON('http://api.petfinder.com/shelter.find?format=json&key=542589b85677d309b9e508711958b27a&count=5&location=' + zip + '&callback=?'
+    $.getJSON('http://api.petfinder.com/shelter.find?format=json&key=542589b85677d309b9e508711958b27a&count=7&location=' + zip + '&callback=?'
             ).done(function(shelterData) { 
 
             console.log('Shelter Data retrieved!')
@@ -93,24 +93,25 @@ $("#submitName").on("click", function(){
                 for (var i = 0; i < shelterData.petfinder.shelters.shelter.length; i++){
                     var shelterLat = shelterData.petfinder.shelters.shelter[i].latitude.$t;
                     var shelterLong = shelterData.petfinder.shelters.shelter[i].longitude.$t;
-                    var shelterContent = shelterData.petfinder.shelters.shelter[i].name.$t;
-                    newMarker();
-                }
+                    var shelterName = shelterData.petfinder.shelters.shelter[i].name.$t;
+                    //newMarker();
+                //}
 
-                function newMarker(){
+                //function newMarker(){
                     marker = new google.maps.Marker({
                         position: {lat: parseFloat(shelterLat), lng: parseFloat(shelterLong)},
                         map: map,
                         animation: google.maps.Animation.DROP
                     });
 
-                    infowindow = new google.maps.InfoWindow({
-                        content: shelterContent
-                    });
-
-                    marker.addListener('click', function() {
-                        infowindow.open(map, marker);
-                    });
+                    var infowindow = new google.maps.InfoWindow();  
+                    var content = shelterName;
+                    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                        return function() {
+                            infowindow.setContent(content);
+                            infowindow.open(map,marker);
+                        };
+                    })(marker,content,infowindow));
                 }
 
             });
