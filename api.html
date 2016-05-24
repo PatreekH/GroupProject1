@@ -16,29 +16,35 @@
     <h1 class="text-center">WikiRescue!</h1>
       <form role="form">
         <div class="form-group">
-          <center><label class="nameinputlabel" for="text">Zipcode:</label></center>
+          <center>
+            <label class="nameinputlabel" for="text">Zipcode:</label>
+          </center>
           <input type="text" class="form-control" id="zip">
 
           <br>
-          <div class="dropdown animalName">
 
-            <button class="btn btn-secondary dropdown-toggle animalButton" data-toggle="dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="animalName">
+            <button class="btn btn-secondary pull-right dropdown-toggle animalButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <b>Click here for Animal Type</b>
             </button>
+          </div>
 
-            <div class="dropdown-menu dropdown-menu-right animalName" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item typeDog" type="button">Dog</button>
-              <button class="dropdown-item typeCat" type="button">Cat</button>
-              <button class="dropdown-item typeBird" type="button">Bird</button>
-            </div>
+          <div class="nameOptions">
+
+            <button class="dropdown-item btn typeDog" id="animalTypeDog" type="button">Dog</button>|<button class="dropdown-item btn typeCat" id="animalTypeCat" type="button">Cat</button>|<button class="dropdown-item btn typeBird" id="animalTypeBird" type="button">Bird</button>
 
           </div>
-        <br>
+          
+          <br>
+          <br>
+          <br>
 
-          <center><label class="nameinputlabel" for="text">Breed type:</label></center>
+          <center><label class="nameinputlabel breedTitle" for="text">Breed type:</label></center>
           <input type="text" class="form-control" list="autofill" id="breedName">
           <br>
-          <center><button type="submit" class="btn btn-default" id="submitName">Submit</button></center>
+          <center>
+            <button type="submit" class="btn btn-default" id="submitName">Search</button>
+          </center>
         </div>
       </form>
   </div>

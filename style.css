@@ -2,29 +2,143 @@
 	overflow: auto;
 }
 
+.breedTitle{
+	width: 15%;
+	text-align: center;
+}
+
 .animalName{
 	width: 15%;
 	margin-left: 42.5%;
 	text-align: center;
+	position: absolute;
+	z-index: +1;
 }
 
-#breedName{
-	width: 15%;
-	margin-left: 42.5%;
+.dropdown-menu.pull-right {
+	background-color: #eff0f1;
+    right: -180;
+    left: auto;
+    height: 34px;
 }
 
 .animalButton{
 	width: 100%;
 }
 
+.animalddmenu{
+	text-align: center;
+	outline: none;
+}
+
+.nameOptions{
+	margin-left: 42.5%;
+	text-align: center;
+	position: absolute;
+}
+
+#animalTypeDog{
+	padding: 0px;
+	padding-bottom: 6px;
+    margin: 6px 12px;
+    background-color: #eff0f1;
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#animalTypeDog:hover{
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+}
+
+#animalTypeCat{
+	padding: 0px;
+	padding-bottom: 6px;
+    margin: 6px 12px;
+    background-color: #eff0f1;
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#animalTypeCat:hover{
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+}
+
+#animalTypeBird{
+	padding: 0px;
+	padding-bottom: 6px;
+    margin: 6px 12px;
+    background-color: #eff0f1;
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#animalTypeBird:hover{
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+}
+
+.dropdown-menu {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn{
+	border-radius: 0px;
+	outline: none;
+}
+
+#submitName{
+	outline: none;
+}
+
+#breedName{
+	width: 15%;
+	margin-left: 42.5%;
+	outline: none;
+}
+
 #zip{
 	width: 15%;
 	margin-left: 42.5%;
+	outline: none;
 }
 
 #map{
 	height: 40%;
 }
+
+/** #submitName {
+	margin-top: 1%;
+	text-align: center;
+	border: none;
+	background-color: white;
+	color: #c4c4c4;
+	padding: 15px 32px;
+	font-size: 26px;
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#submitName:hover{
+	background-color: white;
+	color: #c4c4c4;
+	box-shadow: 0 0px 0px 16px #c4c4c4;
+} **/
 
 .petDiv{
 	display: inline-block;

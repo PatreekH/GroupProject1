@@ -23,7 +23,7 @@ function initMap() {
 
 $(".typeDog").on("click", function(){
 var name = "dog"
-$(".dropdown").removeClass("open");
+$(".nameOptions").animate({left: "-=250px"});
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(dogData) { 
@@ -40,7 +40,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 })
 $(".typeCat").on("click", function(){
 var name = "cat"
-$(".dropdown").removeClass("open");
+$(".nameOptions").animate({left: "-=250px"});
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(catData) { 
@@ -57,7 +57,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 })
 $(".typeBird").on("click", function(){
 var name = "bird"
-$(".dropdown").removeClass("open");
+$(".nameOptions").animate({left: "-=250px"});
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(birdData) { 
@@ -74,7 +74,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 })
 
 $(".animalButton").on("click", function(){
-    $(".dropdown").addClass("open");
+    $(".nameOptions").animate({left: "250px"});
 });
 
 $("#submitName").on("click", function(){
