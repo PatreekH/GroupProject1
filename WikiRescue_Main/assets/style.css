@@ -1,5 +1,6 @@
 body {
-	font-family: 'Work Sans', sans-serif;
+	margin: 0;
+	padding: 0;
 	background-image: url(transparent_prints.png);
 }
 
@@ -31,6 +32,16 @@ footer {
 	float: left;
 }
 
+.banner{
+	background-color: white;
+}
+
+.petfinder_info {
+	float: left;
+	width: 32%;
+	margin-right: 1%;
+}
+
 #wikimap{
 }
 
@@ -47,6 +58,8 @@ footer {
 #pets{
 	margin-top: 1%;
 }
+
+
 
 #searchbar{
 	height: 150px;
