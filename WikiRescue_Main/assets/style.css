@@ -1,0 +1,53 @@
+body {
+	font-family: 'Work Sans', sans-serif;
+	background-image: url(transparent_prints.png);
+}
+
+body: after {
+	opacity: 0.2;
+}
+
+.title {
+	font-family: 'Snowburst One', cursive;
+	color: #2196f3;
+}
+
+h4 {
+	text-align: center;
+}
+
+@font-face {
+	font-family: deco;
+	src: url(Market_Deco.ttf);
+}
+
+footer {
+	font-family: "deco", cursive;
+}
+
+#map{
+	height: 300px;
+	width: 500px;
+	float: left;
+}
+
+#wikimap{
+}
+
+#wikiresult{
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	height: 300px;
+	width: 500px;
+	float: left;
+	margin-left: 2%;
+}
+
+#pets{
+	margin-top: 1%;
+}
+
+#searchbar{
+	height: 150px;
+}

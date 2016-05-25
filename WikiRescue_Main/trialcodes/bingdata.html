@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bing Search</title>
+	<script src="jquery-2.2.3.min.js" ></script>
+</head>
+<body>
+	<div id="search">
+		<form>Search Here
+			<input id="searchTerm"> <br>
+			<input type="submit" id="getResults"> <br>
+		</form>
+	</div>
+
+	<div id="viewResults">
+		<h1>News Articles</h1> <br>
+		<div id="showArticles"></div> <br>
+		<h1>Videos</h1> <br>
+		<div id="showVideos"></div>
+	</div>
+
+<script type="text/javascript">
+
+$(document).ready (function() {
+	$("#getResults").on("click", function() {
+
+		$("#showArticles").empty(); $("showVideos").empty();
+
+		var getBingTerm = $("#searchTerm").val().trim();
+				console.log(getBingTerm);
+		var bingUrl = "https://api.datamarket.azure.com/Bing/Search/v1/Composite?Sources=%27news%2Bimage%2Bvideo%27&Query=%27" + getBingTerm + "%27&$top=10&$format=json"
+
+		$.ajax({ url: bingUrl, 	method: 'GET',
+				headers: { Authorization: 'Basic '+ btoa('4LleeC+EOxRAuqHyHr2vjDad+DndwMdwKpPN0jvcBQk:4LleeC+EOxRAuqHyHr2vjDad+DndwMdwKpPN0jvcBQk') }
+				}).done(function(response) {
+						console.log(response);
+					
+		// Pull News
+			var bingSearchArticles = response.d.results[0].News;
+				for ( var ba = 0; ba < bingSearchArticles.length; ba++) {
+					console.log(bingSearchArticles[ba]);
+
+				$("#showArticles").append(
+					"<div class='articleContainer'>" + 
+					"<strong id='showArticleTitle'>" + bingSearchArticles[ba].Title + "</strong>" + "<br>" +
+					"<span id='showSource'>" + bingSearchArticles[ba].Source + "</span>" + " : " + 
+					"<span id='showDate'>" + bingSearchArticles[ba].Date + "</span>" + "<br>" + 
+					"<p id='showDescription'>" + bingSearchArticles[ba].Description + "</p>" + "<br>" + 
+					"<a id='showLink' href='" + bingSearchArticles[ba].Url + "'> View Article </a>" + "<br><br>"
+				)};
+
+		// Pull Videos
+
+			var bingGetVideo = response.d.results[0].Video;
+				for ( var bv = 0; bv < bingGetVideo.length; bv++) {
+
+					$("#showVideos").append(
+
+						"<div id='videoContainer'>" + "<br>" +
+						"<strong id='showVideoTitle'>" + bingGetVideo[bv].Title + "</strong>" + "<br>" +
+						"<img style='max-width: 200px; max-height:150px;' src='" + bingGetVideo[bv].Thumbnail.MediaUrl + "'> <br>"
+
+		/*				"<div id='videoContainer'>" +
+						"<strong id='showVideoTitle'>" + bingGetVideo[bv].Title + "</strong>" + "<br>" +
+						"<div id='videoFrame'>" + bingGetVideo[bv].Thumbnail + "</div>" + "<br>" +
+						"<div id='videoFrame'>" + bingGetVideo[bv].DisplayUrl + "</div>" + "<br>" +
+						"<div id='videoFrame'>" + bingGetVideo[bv].MediaUrl + "</div>" + "<br>"     */
+						)
+			}
+				});
+			return false;
+		});
+});
+</script>
+
+
+</body>
+</html>
