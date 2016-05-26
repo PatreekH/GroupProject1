@@ -9,6 +9,8 @@ var shelterLat;
 var shelterLong;
 var name;
 
+$("#wiki").hide();
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -21,6 +23,7 @@ function initMap() {
 $(".typeDog").on("click", function(){
 var name = "dog"
 //$(".nameOptions").animate({left: "-=250px"});
+$("#typeTitle").html("<b>Dog</b>");
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(dogData) { 
@@ -38,6 +41,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 $(".typeCat").on("click", function(){
 var name = "cat"
 //$(".nameOptions").animate({left: "-=250px"});
+$("#typeTitle").html("<b>Cat</b>");
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(catData) { 
@@ -55,6 +59,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 $(".typeBird").on("click", function(){
 var name = "bird"
 //$(".nameOptions").animate({left: "-=250px"});
+$("#typeTitle").html("<b>Bird</b>");
 $("#autofill").empty()
 $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b9e508711958b27a&animal=' + name + '&callback=?'
     ).done(function(birdData) { 
@@ -74,6 +79,10 @@ $("#submitName").on("click", function(){
 
     var zip = $("#zip").val().trim();
     var breedType = $("#breedName").val().trim();
+
+    $("#wiki").show();
+
+    $("#pets").empty();
 
     var apiMap = "https://maps.googleapis.com/maps/api/geocode/json?address=postal_code:" + zip + "&key=AIzaSyC1mvi9WJalAJi7wOxXsYjqtwbDU3h6C5s";
     $.ajax({

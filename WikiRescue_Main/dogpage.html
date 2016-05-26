@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Project Name</title>
+	<title>WikiRescue</title>
 	<!-- link to materiallize -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 	<!-- link to materialize icons -->
@@ -35,43 +35,38 @@
 </div>
 </div>
 
-<div class="row" id="searchbar">
 
-	<div class="input-filed col s6 m2 offset-m1">
-		<input id="zip" type="text" class="validate">
-		<label for="search-term">Zip code</label>
+<div class="container" id="searchmap">
+
+	<div id="searchbar">
+
+		<div class="input-field col s6 m2 offset-m1">
+			<label for="search_term">Zipcode</label>
+    		<input id="zip" list="autofill" type="text">
+ 		</div>
+
+  		<center><a class='dropdown-button btn' href='#' data-activates='dropdown1' id='typeTitle'>Type of animal</a></center>
+
+  		<ul id='dropdown1' class='dropdown-content'>
+    		<li class="typeDog"><b>Dog</b></li>
+    		<li class="typeCat"><b>Cat</b></li>
+    		<li class="typeBird"><b>Bird</b></li>
+  		</ul>
+
+		<div class="input-field col s6 m2 offset-m1">
+			<label for="search_term">Breed</label>
+    		<input id="breedName" list="autofill" type="text">
+ 		</div>
+
+    	<center><a class="waves-effect waves-teal btn-flat search" id="submitName">Submit</a></center>
 	</div>
 
-<!-- Dropdown Trigger -->
-  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Pick an animal type</a>
-
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li class="typeDog">Dog</li>
-    <li class="typeCat">Cat</li>
-    <li class="typeBird">Bird</li>
-  </ul>
-
-	<div class="input-field col s6 m2 offset-m1">
-		<label for="search_term">breed</label>
-    	<input id="breedName" list="autofill" type="text" class="validate">
- 	</div>
-
-    <a class="waves-effect waves-teal btn-flat search" id="submitName">submit</a>
+	<div class="col m6" id="map">
+	</div>
 
 </div>
 
-
-<div class="container" id="wikimap">
-
-	<!-- <div class="row">
-		<div class="card-panel valign-wrapper z-depth-3">
-		<h3 class="center-align title blue-text" id="breed">German Shepherd</h3>
-		</div>
-	</div> -->
-<div class="col m6" id="map">
-	</div>
-
+<div class="container" id="wiki">
 
 	<div class="col m6" id="wikiresult">
 	</div>
