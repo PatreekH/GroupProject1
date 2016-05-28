@@ -47,11 +47,13 @@
 
   		<center><a class='dropdown-button btn' href='#' data-activates='dropdown1' id='typeTitle'>Type of animal</a></center>
 
+
   		<ul id='dropdown1' class='dropdown-content'>
-    		<li class="typeDog"><b>Dog</b></li>
-    		<li class="typeCat"><b>Cat</b></li>
-    		<li class="typeBird"><b>Bird</b></li>
-  		</ul>
+            <li><a class="waves-effect waves-teal btn-flat typeDog center-align menuB">Dog</a></li>
+            <li><a class="waves-effect waves-teal btn-flat typeCat center-align menuB">Cat</a></li>
+            <li><a class="waves-effect waves-teal btn-flat typeBird center-align menuB">Bird</a></li>
+          </ul>
+
 
 		<div class="input-field col s6 m2 offset-m1">
 			<label for="search_term">Breed</label>
@@ -61,7 +63,10 @@
     	<center><a class="waves-effect waves-teal btn-flat search" id="submitName">Submit</a></center>
 	</div>
 
-	<div class="col m6" id="map">
+	<div class="col m2" id="last5">
+	</div>
+
+	<div class="col m5" id="map">
 	</div>
 
 </div>
@@ -101,7 +106,7 @@
 </script>
 
 <!--link to image card js page -->
-<script type="text/javascript" src="trialcodes/pets.js"></script>
+<script type="text/javascript" src="pets.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mvi9WJalAJi7wOxXsYjqtwbDU3h6C5s&callback=initMap" async defer></script>
 </body>
 </html>
