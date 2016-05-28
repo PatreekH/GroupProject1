@@ -83,24 +83,6 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 
 
 
-
-$("#submitName").on("click", function(){
-
-    var zip = $("#zip").val().trim();
-    var breedType = $("#breedName").val().trim();
-
-    database.push({
-        name: animalClick,
-        zip: zip,
-        breed: breedType
-    })
-
-//Firebase
-
-    //var recentName = [];    
-    //var recentZip = [];
-    //var recentBreed =[];
-
     var lastSearch = [];
 
 database.limitToLast(5).on('child_added', function(dataSnap){
@@ -124,6 +106,26 @@ database.limitToLast(5).on('child_added', function(dataSnap){
         
    }
 });
+
+
+
+
+$("#submitName").on("click", function(){
+
+    var zip = $("#zip").val().trim();
+    var breedType = $("#breedName").val().trim();
+
+    database.push({
+        name: animalClick,
+        zip: zip,
+        breed: breedType
+    })
+
+//Firebase
+
+    //var recentName = [];    
+    //var recentZip = [];
+    //var recentBreed =[];
 
 //function mostRecentSearch(){
 
