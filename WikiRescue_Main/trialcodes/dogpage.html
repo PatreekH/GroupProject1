@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project Name</title>
+	<!-- link to materiallize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	<!-- link to materialize icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!--fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Snowburst+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
+
+	<!-- stylesheet -->
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+</head>
+
+
+<body class="my-container">
+
+<div class="row">
+	<div class="col s3 welcome">
+		Welcome Becky!
+	</div>
+	<div class="col s2 offset-s6">
+		<a href="#">My Account</a>
+	</div>
+</div>
+<div class="card-panel purple lighten-5 z-depth-3">
+<div class="row">
+	<span class="col s2 m1">
+		<img src="assets/cat_paw.png" height="50px" width="50px">
+	</span>
+<!--I'm leaving this row intact now but we'll have to see how it looks on a phone -->
+	<span class="col s5 m4">
+		<h3 class="title">Rescue Wiki</h3>
+	</span>
+</div>
+</div>
+<div class="row">
+<div class="input-filed col s6 m2 offset-m1">
+	<input id="zipcode" type="text" class="validate">
+	<label for="search-term">zip code</label>
+</div>
+<div>
+    <select class="col s6 m3 offset-m1">
+      <option class="title">Choose Your Pet</option>
+      <option value="1">dog</option>
+      <option value="2">cat</option>
+      <option value="3">bird</option>
+      <!-- other pets could be added here -->
+    </select>
+    <label class="title">Choose Your Pet</label>
+</div>
+<!-- WHY DOESN'T THIS LINE UP??? -->
+<div class="input-field col s6 m2 offset-m1">
+     <input id="breed_name" type="text" class="validate">
+     <label for="search_term">breed</label>
+ </div>
+    <a class="waves-effect waves-teal btn-flat search">submit</a>
+
+</div>
+
+
+<div class="container">
+
+	<div class="row">
+		<!-- this offsets the row and vertically aligns the text -->
+		<div class="card-panel valign-wrapper z-depth-3">
+		<h3 class="center-align title blue-text" id="breed">German Shepherd</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s6 offset-3 m4 photo">
+			photo goes here
+		</div>
+		<div class="col s12 m8 about">
+			wiki entry goes here
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s6 offset-3 m4">
+			popular news
+		</div>
+		<div class="col s12 m8 article">
+			news article
+		</div>
+	</div>
+
+	<div class="row giphy">
+		adorable gifs here
+	</div>
+
+	<div class="row videos">
+	</div>
+
+	<div class="row petfinder_info">
+		<!-- use a ".card-image" or ".card-reveal"/span .card-title card for these photo/text/links -->
+		<!-- animal adoption info here -->
+		<div class="col sm12 m6">
+		<div class="card small">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="assets/small-dog-stock.jpg" alt="shaggy dog on sofa" height="200" width="200">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4 title">Card Title<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4 title">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    	</div>
+    	</div>
+  	</div>
+
+  		<div class="ANIMAL_DIV">
+  		</div>
+	</div>
+</div>
+
+
+<footer> &#169 susan and erik and patrick and mary</footer>
+
+
+
+
+
+
+<!-- link to jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!-- link to materialize js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+<script type="text/javascript">
+	//this needs to be included for the dropdown menu to work
+	$(document).ready(function() {
+    $('select').material_select();
+});
+</script>
+
+<!--link to image card js page -->
+<script type="text/javascript" src="trialcodes/pets.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login page</title>
+	<!-- link to materialize cdn -->
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+	<!-- link to materialize icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Snowburst+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
+
+
+</head>
+<body>
+
+<div class="card-panel purple lighten-5 z-depth-3">
+<div class="row">
+  <div col s1>
+    <img src="assets/cat_paw.png" height="50px" width="50px">
+  </div>
+  <!--I'm leaving this row intact now but we'll have to see how it looks on a phone -->
+  <div col offset-s1>
+    <h3 class="title">Rescue Wiki</h3>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
+
+
+
+	<!-- ===============================-->
+<div id="login">
+	<div class="row">
+	<!-- the login screen for registerd users-->
+		<h4 class="center-align title"> Login </h4>
+	</div>
+	<div class="row">
+		<form class="col s12">
+			<div class="row">
+			<!-- username/email -->
+				<div class="input-field col s12">
+					<input id="email" type="email" class="validate">
+					<label for="email">Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<!-- password -->
+        		<div class="input-field col s12">
+          			<input id="password" type="password" class="validate">
+          			<label for="password">Password</label>
+        		</div>
+      		</div>
+      		<div class="row">
+      			<button class="btn waves-effect waves-light regUser" type="submit" name="action">Submit
+    				<i class="material-icons right">send</i>
+  				</button>
+          <button class="btn waves-effect waves-light register blue" type="submit" name="action">Register for a new account
+            <i class="material-icons right">send</i>
+          </button>
+      		</div>
+		</form>
+	</div>
+</div>
+
+	<!-- ================================ -->
+	<!-- the signup screen for new users -->
+<div id="registration" style="display:none;">
+	<div class="row">
+		<h4 class="center-align title">Register</h4>
+	</div>
+	<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+        	<!-- the length ='10' limits password length -->
+          <input id="password" type="password" length="10" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Type password again</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+      	<button class="btn waves-effect waves-light newUser" type="submit" name="action">Submit
+    		<i class="material-icons right">send</i>
+  		</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+	
+
+
+</div>
+
+<footer> &#169 susan and erik and patrick and mary</footer>
+
+<!-- link to jquwey -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!-- link to materialize js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+<!-- link to firebase js -->
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+<!-- link to validate js -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+
+<!-- link to ask user to login -->
+<script src="userauth.js"></script>
+
+<script type="text/javascript">
+  
+  $(".register").on("click", function() {
+    $("#login").attr("style", "display:none;");
+    $("#registration").removeAttr("style");
+
+    return false;
+
+  })
+</script>
+
+
+
+</body>
+</html>

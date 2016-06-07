@@ -31,7 +31,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
         console.log('Dog Breed Data retrieved!')
         console.log(dogData);
         $(".animalButton").empty();
-        $(".animalButton").html("<b>Dog</b>");
+        $(".animalButton").html("<b id='blackfont'>Dog</b>");
 
         for (i = 0; i < dogData.petfinder.breeds.breed.length; i++){
             $("#autofill").append("<option value='" + dogData.petfinder.breeds.breed[i].$t + "'>");
@@ -48,7 +48,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
         console.log('Cat Breed Data retrieved!')
         console.log(catData);
         $(".animalButton").empty();
-        $(".animalButton").html("<b>Cat</b>");
+        $(".animalButton").html("<b id='blackfont'>Cat</b>");
 
         for (i = 0; i < catData.petfinder.breeds.breed.length; i++){
             $("#autofill").append("<option value='" + catData.petfinder.breeds.breed[i].$t + "'>");
@@ -65,7 +65,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
         console.log('Bird Breed Data retrieved!')
         console.log(birdData);
         $(".animalButton").empty();
-        $(".animalButton").html("<b>Bird</b>");
+        $(".animalButton").html("<b id='blackfont'>Bird</b>");
 
         for (i = 0; i < birdData.petfinder.breeds.breed.length; i++){
             $("#autofill").append("<option value='" + birdData.petfinder.breeds.breed[i].$t + "'>");

@@ -18,69 +18,80 @@
 	<!-- Firebase -->
 	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 </head>
-<body class="my-container">
+<body>
 
+
+<div class="container">
 <datalist id="autofill"></datalist>
 
 
-<div class="banner purple lighten-5">
-<div class="row">
-	<span class="col s2 m1">
-		<img src="assets/cat_paw.png" height="50px" width="50px">
-	</span>
+<div class="row banner">
+	
 <!--I'm leaving this row intact now but we'll have to see how it looks on a phone -->
-	<span class="col s5 m4">
-		<h3 class="title">Rescue Wiki</h3>
-	</span>
-</div>
+	<h1 class="title align-center">Rescue Wiki</h1>
+	<a class="waves-effect waves-teal btn-flat col s1 offset-s10 logout">Logout</a>
 </div>
 
 
-<div class="container" id="searchmap">
+<div class="row" id="searchmap">
+		<div id="searchbar">
+				<div class="col s6 m6 l3">
 
-	<div id="searchbar">
+					<div class="input-field">
+						<label for="search_term">Zipcode</label>
+    					<input id="zip" type="text">
+ 					</div>
 
-		<div class="input-field col s6 m2 offset-m1">
-			<label for="search_term">Zipcode</label>
-    		<input id="zip" list="autofill" type="text">
- 		</div>
-
-  		<center><a class='dropdown-button btn' href='#' data-activates='dropdown1' id='typeTitle'>Type of animal</a></center>
-
-
-  		<ul id='dropdown1' class='dropdown-content'>
-            <li><a class="waves-effect waves-teal btn-flat typeDog center-align menuB">Dog</a></li>
-            <li><a class="waves-effect waves-teal btn-flat typeCat center-align menuB">Cat</a></li>
-            <li><a class="waves-effect waves-teal btn-flat typeBird center-align menuB">Bird</a></li>
-          </ul>
+  					<center><a class='dropdown-button btn' href='#' data-activates='dropdown1' id='typeTitle'>Type of animal</a></center>
 
 
-		<div class="input-field col s6 m2 offset-m1">
-			<label for="search_term">Breed</label>
-    		<input id="breedName" list="autofill" type="text">
- 		</div>
+  					<ul id='dropdown1' class='dropdown-content '>
+            			<li><a class="waves-effect waves-teal btn-flat typeDog center-align menuB">Dog</a></li>
+            			<li><a class="waves-effect waves-teal btn-flat typeCat center-align menuB">Cat</a></li>
+            			<li><a class="waves-effect waves-teal btn-flat typeBird center-align menuB">Bird</a></li>
+          			</ul>
 
-    	<center><a class="waves-effect waves-teal btn-flat search" id="submitName">Submit</a></center>
+
+					<div class="input-field">
+						<label for="search_term">Breed</label>
+    					<input id="breedName" list="autofill" type="text">
+ 					</div>
+
+    				<center><a class="waves-effect waves-teal btn search" id="submitName">Search</a></center>
+				</div>
+
+			<div class="col s6 m6 l3">
+				<div id="last5">
+				<p>Last 5 Searches:</p>
+				</div>
+	
+		</div>
 	</div>
 
-	<div class="col m2" id="last5">
-	</div>
-
-	<div class="col m5" id="map">
-	</div>
-
-</div>
-
-<div class="container" id="wiki">
-
-	<div class="col m6" id="wikiresult">
+	<div class="col s12 m7 l6" id="map">
 	</div>
 
 </div>
 
-<div class="container" id="pets">
+<div class="row">
+	<div id="wiki">
+
+		<div class="col m6" id="wikiresult">
+		</div>
+
+	</div>
+</div>
+
+<div class="row">
+
+	<div id="pets">
+
+	</div>
 
 </div>
+
+</div>
+
 
 
 
@@ -107,6 +118,9 @@
 
 <!--link to image card js page -->
 <script type="text/javascript" src="pets.js"></script>
+<script type="text/javascript" src="logout.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1mvi9WJalAJi7wOxXsYjqtwbDU3h6C5s&callback=initMap" async defer></script>
+
 </body>
+
 </html>

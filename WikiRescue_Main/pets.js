@@ -9,6 +9,7 @@ var shelterLat;
 var shelterLong;
 var name;
 var animalClick;
+var counter = 0;
 
 $("#wiki").hide();
 
@@ -23,7 +24,7 @@ function initMap() {
 
 $(".typeDog").on("click", function(){
 var name = "dog";
- animalClick = 'dog';
+animalClick = 'dog';
 //$(".nameOptions").animate({left: "-=250px"});
 $("#typeTitle").html("<b>Dog</b>");
 $("#autofill").empty()
@@ -43,7 +44,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 
 $(".typeCat").on("click", function(){
 var name = "cat";
- animalClick = 'dog';
+animalClick = 'cat';
 //$(".nameOptions").animate({left: "-=250px"});
 $("#typeTitle").html("<b>Cat</b>");
 $("#autofill").empty()
@@ -63,7 +64,7 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
 
 $(".typeBird").on("click", function(){
 var name = "bird";
- animalClick = 'bird';
+animalClick = 'bird';
 //$(".nameOptions").animate({left: "-=250px"});
 $("#typeTitle").html("<b>Bird</b>");
 $("#autofill").empty()
@@ -81,39 +82,80 @@ $.getJSON('http://api.petfinder.com/breed.list?format=json&key=542589b85677d309b
     });
 })
 
+//Firebase
 
 
     var lastSearch = [];
 
 database.limitToLast(5).on('child_added', function(dataSnap){
     // stores the object into a variable.
-    var searchInfo = dataSnap.val();
+    var searchVal = dataSnap.val();
 
-    var buttonName = searchInfo.name;
-    var buttonZip = searchInfo.zip;
-    var buttonBreed = searchInfo.breed;
+    var buttonName = searchVal.name;
+    var buttonZip = searchVal.zip;
+    var buttonBreed = searchVal.breed;
 
-    lastSearch.push(searchInfo);
+    lastSearch.push(searchVal);
 
-    console.log(searchInfo);
+    console.log(searchVal);
     console.log(lastSearch);
+    console.log(buttonBreed);
     console.log(buttonName);
     console.log(buttonZip);
-    
-   if(5 >= lastSearch.length){
-    var newButton = $("<button class='btn waves-effect waves-light'>" + buttonBreed + "</button>");
-    $("#last5").append(newButton);
-        
-   }
+
+
+        if(5 >= lastSearch.length){
+            //counter++;
+            var newButton = $("<button class='btn waves-effect waves-light' id='last5button" + counter + "'>" + searchVal.breed + "</button>");
+            $("#last5").append(newButton);
+        }  
+
+    $("#last5button1").on("click", function(){
+        var zipText = $('#zip');
+        zipText.val(lastSearch[0].zip);
+        $("#typeTitle").html("<b>" + lastSearch[0].name + "</b>");
+        var breedText = $("#breedName");
+        breedText.val(lastSearch[0].breed);
+
+    });
+    $("#last5button2").on("click", function(){
+        var zipText = $('#zip');
+        zipText.val(lastSearch[1].zip);
+        $("#typeTitle").html("<b>" + lastSearch[1].name + "</b>");
+        var breedText = $("#breedName");
+        breedText.val(lastSearch[1].breed);
+    });
+        $("#last5button3").on("click", function(){
+        var zipText = $('#zip');
+        zipText.val(lastSearch[2].zip);
+        $("#typeTitle").html("<b>" + lastSearch[2].name + "</b>");
+        var breedText = $("#breedName");
+        breedText.val(lastSearch[2].breed);
+
+    });
+    $("#last5button4").on("click", function(){
+        var zipText = $('#zip');
+        zipText.val(lastSearch[3].zip);
+        $("#typeTitle").html("<b>" + lastSearch[3].name + "</b>");
+        var breedText = $("#breedName");
+        breedText.val(lastSearch[3].breed);
+    });
+    $("#last5button5").on("click", function(){
+        var zipText = $('#zip');
+        zipText.val(lastSearch[4].zip);
+        $("#typeTitle").html("<b>" + lastSearch[4].name + "</b>");
+        var breedText = $("#breedName");
+        breedText.val(lastSearch[4].breed);
+    });
 });
 
-
-
+//----------
 
 $("#submitName").on("click", function(){
 
     var zip = $("#zip").val().trim();
     var breedType = $("#breedName").val().trim();
+    counter++;
 
     database.push({
         name: animalClick,
@@ -121,43 +163,6 @@ $("#submitName").on("click", function(){
         breed: breedType
     })
 
-//Firebase
-
-    //var recentName = [];    
-    //var recentZip = [];
-    //var recentBreed =[];
-
-//function mostRecentSearch(){
-
-   // var newButton = $("<button class='btn waves-effect waves-light'>" + buttonName + "</button>");
-   // $("#last5").append(newButton);
-
-
-    // generates 5 buttons.
-    //var arrayIndex = 4;
-
-    //if(recentSearch.length > 5){
-    //    recentSearch.splice(0, 1);
-    //    console.log(recentSearch);
-    //}
-
-    //$('#last5').empty(); // << so it will always be 5 buttons.
-
-    //for(var i = 0; i < recentSearch.length; i++){
-
-    //    var lastButton = $('<button>');
-    //    lastButton.addClass('btn btn-default recentButton'); // class subject to change.
-    //    lastButton.attr('data-name', recentSearch[arrayIndex]);
-     //   lastButton.html(recentSearch[arrayIndex]);
-      //  $('#last5').append(lastButton);
-      //  arrayIndex--;
-
-    //}
-//};
-
-
-
-// --------------
 
 
 
@@ -273,14 +278,14 @@ $("#submitName").on("click", function(){
 
         var petCard = $(
             "<div class='petfinder_info'>" +
-                "<div class='col sm12 m3'>" +
+                //"<div class='col sm12 m6 l4'>" +
                     "<div class='card small'>" + 
                         "<div class='card-image waves-effect waves-block waves-light'>" +
-                            "<img src='" + petData.petfinder.pets.pet[i].media.photos.photo[2].$t + "' style='width:200; height:200px;'>" + 
+                            "<img class='activator' src='" + petData.petfinder.pets.pet[i].media.photos.photo[2].$t + "'style='width:200px; height:200px;'>" + 
                         "</div>" + 
                         "<div class='card-content'>" + 
                             "<span class='card-title activator grey-text text-darken-4 title'>" +
-                                petData.petfinder.pets.pet[i].name.$t + "<br>" + "<h6>Click here to learn more about me!</h6>" +
+                                petData.petfinder.pets.pet[i].name.$t + "<i class='material-icons right'>info</i></span>" +
                         "</div>" +
                         "<div class='card-reveal'>" + 
                             "<span class='card-title grey-text text-darken-4 title'>" +
@@ -308,24 +313,6 @@ $("#submitName").on("click", function(){
 });
 
 
-
-
-
-$(".last1").on("click", function(){
-
-database.on("value", function(snapshot) {
-
-        var lastZip = database.snapshot.zip;
-        var lastType = database.snapshot.breedType;
-        var lastName = database.snapshot.name;
-
-        console.log(lastZip);
-        console.log(lastType);
-        console.log(lastName);
-});
-
-
-});
 
 
 

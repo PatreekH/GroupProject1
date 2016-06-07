@@ -1,0 +1,39 @@
+.panel{
+	overflow: auto;
+}
+
+#animalName{
+	width: 15%;
+	margin-left: 42.5%;
+}
+
+#breedName{
+	width: 15%;
+	margin-left: 42.5%;
+}
+
+#zip{
+	width: 15%;
+	margin-left: 42.5%;
+}
+
+#map{
+	height: 30%;
+}
+
+.petDiv{
+	display: inline-block;
+	overflow: auto;
+}
+
+.petInfo{
+}
+
+.petPic{
+	float: left;
+}
+
+.title{
+	display: inline-block;
+	font-weight: bold;
+}
